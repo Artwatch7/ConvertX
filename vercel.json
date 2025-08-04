@@ -1,19 +1,28 @@
 {
   "version": 2,
+  "framework": "node",
   "buildCommand": "bun run build",
   "devCommand": "bun run dev",
   "installCommand": "bun install",
   "outputDirectory": "dist",
   "builds": [
     {
-      "src": "src/**/*.{js,ts,tsx}",
+      "src": "src/index.tsx",
       "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "src/index.ts"
+      "dest": "/src/index.tsx"
     }
   ],
   "env": {
