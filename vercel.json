@@ -1,14 +1,18 @@
 {
   "version": 2,
-  "framework": "node",
   "buildCommand": "bun run build",
   "devCommand": "bun run dev",
   "installCommand": "bun install",
   "outputDirectory": "dist",
+  "functions": {
+    "api/*.ts": {
+      "runtime": "@vercel/node@latest"
+    }
+  },
   "builds": [
     {
       "src": "src/index.tsx",
-      "use": "@vercel/node"
+      "use": "@vercel/node@latest"
     },
     {
       "src": "public/**",
@@ -17,14 +21,23 @@
   ],
   "routes": [
     {
-      "src": "/public/(.*)",
+      "src": "/static/(.*)",
       "dest": "/public/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/src/index.tsx"
+      "dest": "src/index.tsx"
     }
   ],
+  "env": {
+    "WEBROOT": "",
+    "ALLOW_UNAUTHENTICATED": "false",
+    "JWT_SECRET": "@jwt_secret",
+    "DATABASE_URL": "@database_url",
+    "MAX_CONVERT_PROCESS": "3",
+    "UPLOADS_DIR": "./uploads",
+    "OUTPUT_DIR": "./output"
+  }
   "env": {
     "WEBROOT": "",
     "ALLOW_UNAUTHENTICATED": "false",
