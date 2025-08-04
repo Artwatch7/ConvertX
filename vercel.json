@@ -38,10 +38,5 @@
     "UPLOADS_DIR": "./uploads",
     "OUTPUT_DIR": "./output"
   }
-  "env": {
-    "WEBROOT": "",
-    "ALLOW_UNAUTHENTICATED": "false",
-    "JWT_SECRET": "@jwt_secret",
-    "DATABASE_URL": "@database_url"
-  }
+}
 }
