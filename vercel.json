@@ -1,18 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "bun run build",
-  "devCommand": "bun run dev",
-  "installCommand": "bun install",
-  "outputDirectory": "dist",
-  "functions": {
-    "api/*.ts": {
-      "runtime": "@vercel/node@latest"
-    }
-  },
   "builds": [
     {
       "src": "src/index.tsx",
-      "use": "@vercel/node@latest"
+      "use": "@vercel/node"
     },
     {
       "src": "public/**",
@@ -21,12 +12,8 @@
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/public/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "src/index.tsx"
+      "dest": "/src/index.tsx"
     }
   ],
   "env": {
@@ -38,5 +25,6 @@
     "UPLOADS_DIR": "./uploads",
     "OUTPUT_DIR": "./output"
   }
+}
 }
 }
